@@ -1,0 +1,181 @@
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.cls:after,
+.cls:before {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+$breakpoints: (
+    "sm": (576px,
+        767px,
+    ),
+    "md": (768px,
+        991px,
+    ),
+    "lg": (992px,
+        1199px,
+    ),
+    "xl": (1200px,
+        1399px,
+    ),
+    "xxl": 1400px,
+);
+
+@mixin respond-to($breakname) {
+    $bp: map-get($breakpoints, $breakname);
+
+    @if type-of($bp)=="list" {
+        $min: nth($bp, 1);
+        $max: nth($bp, 2);
+
+        @media (min-width: $min) and (max-width: $max) {
+            @content;
+        }
+    }
+
+    @else {
+        @media (min-width: $bp) {
+            @content;
+        }
+    }
+}
+
+@mixin max-to($breakname) {
+    $bp: map-get($breakpoints, $breakname);
+
+    @if type-of($bp)=="list" {
+        $max: nth($bp, 1);
+
+        @media screen and (max-width: $max) {
+            @content;
+        }
+    }
+
+    @else {
+        @media (max-width: $bp) {
+            @content;
+        }
+    }
+}
+
+@mixin min-to($breakname) {
+    $bp: map-get($breakpoints, $breakname);
+
+    @if type-of($bp)=="list" {
+        $min: nth($bp, 1);
+
+        @media screen and (min-width: $min) {
+            @content;
+        }
+    }
+
+    @else {
+        @media (min-width: $bp) {
+            @content;
+        }
+    }
+}
+
+@media (max-width: 767px) {
+    .hidden-xs {
+        display: none !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .hidden-sm {
+        display: none !important;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .hidden-md {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hidden-lg {
+        display: none !important;
+    }
+}
+
+@media (max-width: 767px) {
+    .container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .container {
+        width: 1320px;
+    }
+}
+
+.container {
+    margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+    .banner_container {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .banner_container {
+        width: 950px;
+    }
+}
+
+@media (min-width: 992px) {
+    .banner_container {
+        width: 1170px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .banner_container {
+        width: 1370px;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .banner_container {
+        width: 1720px;
+    }
+}
+
+.banner_container {
+    margin: 0 auto;
+}
