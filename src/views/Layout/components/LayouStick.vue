@@ -1,9 +1,17 @@
 <script setup>
-import usecomichelp from "@/utls/comichelp";
+// vueUse
+import usecomichelp from "@/utils/comichelp";
 let { theme } = usecomichelp();
 // vueUse
 import { useScroll } from "@vueuse/core";
 const { y } = useScroll(window);
+import { useUserStore } from "@/stores/userStore";
+const userStore = useUserStore();
+const confirm = () => {
+  userStore.clearUserInfo();
+};
+import { useLayoutStore } from "@/stores/layoutStore";
+const layoutStore = useLayoutStore();
 </script>
 
 <template>
@@ -16,15 +24,15 @@ const { y } = useScroll(window);
           />
         </a>
         <ul class="NavLeft fl">
-          <li class="item active"><a href="/">首页</a></li>
-          <li class="item active"><a href="/">分类</a></li>
-          <li class="item active"><a href="/">漫剧</a></li>
-          <li class="item active"><a href="/">世界</a></li>
-          <li class="item active"><a href="/">原创投稿</a></li>
-          <li class="item active"><a href="/">开发平台</a></li>
-          <li class="item active"><a href="/">IP合作</a></li>
-          <li class="item active"><a href="/">营销合作</a></li>
-          <li class="item active"><a href="/">条漫大赛</a></li>
+          <li
+            class="item active"
+            v-for="item in layoutStore.navList"
+            :key="item.id"
+          >
+            <RouterLink :to="item.to">
+              {{ item.name }}
+            </RouterLink>
+          </li>
         </ul>
         <div class="SearchBox fl">
           <input
@@ -35,15 +43,34 @@ const { y } = useScroll(window);
           <a class="searchBtn"></a>
         </div>
         <div class="logonStatus">
-          <div class="User fl">
-            <div class="avatar">
-              <img
-                src="https://tn1-f2.kkmh.com/image/180404/QEEoeIerw.webp-t.w50.webp.h"
-              />
+          <template v-if="userStore.userInfo.token">
+            <div class="User fl">
+              <div class="avatar">
+                <img
+                  src="https://tn1-f2.kkmh.com/image/180404/QEEoeIerw.webp-t.w50.webp.h"
+                />
+              </div>
             </div>
-          </div>
-          <a class="to-whiting fl"> 会员中心 </a>
-          <a class="to-whiting fl"> 我的钱包 </a>
+            <a class="to-whiting fl"> 我的钱包 </a>
+            <el-popconfirm
+              title="确认退出吗?"
+              @confirm="confirm"
+              confirm-button-text="确认"
+              cancel-button-text="取消"
+            >
+              <template #reference>
+                <a class="to-whiting fl"> 退出登录 </a>
+              </template></el-popconfirm
+            >
+          </template>
+          <template v-else>
+            <a class="to-whiting fl" @click="$router.replace('/login')">
+              登录
+            </a>
+            <a class="to-whiting fl"> 帮助中心 </a>
+            <a class="to-whiting fl"> 关于我们 </a>
+          </template>
+
           <button
             class="to-whiting fl change"
             @click="theme = theme === 'dark' ? 'light' : 'dark'"

@@ -1,8 +1,13 @@
-
 <script setup>
 import "./js/swiper.min.js";
-import { onMounted } from "vue";
+import { getCategoryListAPI } from "@/apis/home.js";
+import { onMounted, ref } from "vue";
+const categoryList = ref(null);
+const getcategoryList = async () => {
+  categoryList.value = (await getCategoryListAPI()).data;
+};
 onMounted(() => {
+  getcategoryList();
   var swiper = new Swiper(".swiper-container", {
     autoplay: 5000,
     speed: 1000,
@@ -70,50 +75,14 @@ onMounted(() => {
     <div class="container">
       <div class="labelNav">
         <ul class="navList cls">
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 恋爱 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 古风 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 穿越 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 大女主 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 青春 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 非人类 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 奇幻 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 都市 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 总裁 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 强剧情 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 玄幻 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 系统 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 悬疑 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 末世 </a>
-          </li>
-          <li class="navListItems items">
-            <a href="/tag/20" class="itemLink"> 全部 </a>
+          <li
+            class="navListItems items"
+            v-for="item in categoryList"
+            :key="item.id"
+          >
+            <RouterLink :to="item.to" class="itemLink">
+              {{ item.name }}
+            </RouterLink>
           </li>
         </ul>
       </div>

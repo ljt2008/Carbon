@@ -1,5 +1,4 @@
 <script setup>
-import Carbonswiper from "@/components/carbonbanner/index.vue";
 import HomeContributeArea from "./components/HomeContributeArea.vue";
 import HomeDailyUpdate from "./components/HomeDailyUpdate.vue";
 import HomeDiffuse from "./components/HomeDiffuse.vue";
@@ -12,7 +11,7 @@ import Homefixad from "./components/Homefixad.vue";
 <template>
   <Homefixad />
   <div class="Home cls">
-    <Carbonswiper />
+    <CarbonSwiper />
     <div class="container">
       <HomeContributeArea />
       <MayLike />

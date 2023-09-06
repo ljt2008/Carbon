@@ -2,7 +2,7 @@
 import { computed } from "vue";
 // vueUse
 import { useScroll } from "@vueuse/core";
-import usecomichelp from "@/utls/comichelp";
+import usecomichelp from "@/utils/comichelp";
 let { rate, rateSub, rateAdd } = usecomichelp();
 const { y } = useScroll(window);
 //页面缩放with

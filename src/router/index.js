@@ -22,6 +22,14 @@ const router = createRouter({
       {
         path: 'recharge/:id',
         component: () => import('@/views/Recharge/index.vue')
+      },
+      {
+        path: 'login',
+        component: () => import('@/views/Login/index.vue')
+      },
+      {
+        path: 'whiting',
+        component: () => import('@/views/Whiting/index.vue')
       }
       ]
     },

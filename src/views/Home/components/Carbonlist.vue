@@ -14,8 +14,8 @@ const aspectratio = style === 1 ? 1.6 : 0.75;
   <div class="content">
     <a
       class="item"
-      :style="{ flexBasis: colomns }"
-      :href="item.imgsrc"
+      :style="{ flexBasis: colomns }" 
+      :href="item.to"
       :title="item.title"
       v-for="item in itemlist"
       :key="item.id"

@@ -1,4 +1,4 @@
-import httpInstance from '@/apis/request.js'
+import httpInstance from "@/utils/http";
 // 加入购物车
 export const testAPI = () => httpInstance({
     url: '/hello'

@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref, onMounted } from "vue";
-import usecomichelp from "@/utls/comichelp";
+import usecomichelp from "@/utils/comichelp.js";
 let { rate } = usecomichelp();
 //页面缩放with
 let imglistwidthrate = computed(() => {
@@ -54,7 +54,7 @@ onMounted(() => {
               noinit="true"
               class="img"
               data-src="https://hs1-p1.v3mh.com/image/c266171/221127/D6XIM6QM0.webp-t.w640.jpg.h?sign=05db6c3ce38a92f6b2001eeb7034e11f&amp;t=64bf57e4"
-              src="https://img2.baidu.com/it/u=1792249350,650626052&fm=253&app=120&size=w931&n=0&f=JPEG&fmt=auto?sec=1691082000&t=6a79ef0203fbfc6ebe7ccef9739da1a0"
+              src="https://hs1-p1.v3mh.com/image/c10688/200106/f8abPWTtC.webp-t.w640.jpg.h?sign=cbb7484897ac02085c8995da5b9a89c7&t=64e97ae6"
               lazy="loaded"
             />
           </div>
