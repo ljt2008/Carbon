@@ -77,7 +77,7 @@ const fileinputchange = async function () {
     upload_progress.value.style.display = "none";
     upload_progress_value.value.style.width = "0%";
   };
-  
+
   const complate = async () => {
     // 管控进度条
     index++;
@@ -157,13 +157,18 @@ onBeforeUnmount(() => {
             ref="upload_inp"
           />
           <div class="upload_button_box">
-            <button
-              class="upload_button select"
-              @click="selectbuttonclick"
-              ref="upload_button_select"
-            >
-              上传稿件
-            </button>
+            <Authority permission="user">
+              <template #default="{ userPermisstions }">
+                <button
+                  :disabled="!userPermisstions.includes('commit')"
+                  class="upload_button select"
+                  @click="selectbuttonclick"
+                  ref="upload_button_select"
+                >
+                  上传稿件
+                </button>
+              </template>
+            </Authority>
           </div>
           <div class="upload_progress" ref="upload_progress">
             <div class="value" ref="upload_progress_value"></div>

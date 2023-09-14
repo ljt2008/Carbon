@@ -17,6 +17,9 @@ onMounted(() => {
   geteditorsChoice();
 });
 const choose = ref(1);
+import { inject } from "vue";
+const name = inject("name");
+console.log(name); // 沐华
 </script>
 
 <template>

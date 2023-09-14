@@ -6,6 +6,8 @@ import MayLike from "./components/MayLike.vue";
 import HomeCategories from "./components/HomeCategories.vue";
 import HomeRecommend from "./components/HomeRecommend.vue";
 import Homefixad from "./components/Homefixad.vue";
+import { provide } from "vue";
+provide("name", "沐华");
 </script>
 
 <template>
